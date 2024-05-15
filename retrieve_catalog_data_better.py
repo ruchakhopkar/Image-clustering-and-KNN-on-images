@@ -12,9 +12,8 @@ import os
 from io import BytesIO
 from PIL import Image
 
-link = 'https://sprpigtxl001.seagate.com/~gtx/wafer/proc_DSCVRIX/images/nfs/'
-save_path = '/extrastg/mdfs14/hamr-analysis/image_repo/'
-
+link = ANY_LINK
+save_path = ANY_SAVING_LOCATION
 def get_folder_from_substring(wafer, folder):
     folders = []
     input_link = requests.get(link+wafer + '/', verify = False).text  
@@ -70,7 +69,7 @@ def get_images(save_path, link, wafer, f):
                    if (x.text is not None) & (x.text[-2:] == '.1'):
                        url = link + wafer + '/' + f + '/' + x.text
                        try:
-                           dest = url.replace('https://sprpigtxl001.seagate.com/~gtx/wafer/', save_path)
+                           dest = url.replace(ANY_LINK, save_path)
                            
                            if os.path.exists(os.path.join(dest.split('.')[0] + '.png')):
                                continue
